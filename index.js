@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const PORT = process.env.PORT || 8000;
+const passport = require("passport");
 
 // Get the Sequelize config
 const sequelize = require("./sequelize");
@@ -12,13 +13,16 @@ require("./sequelize/associations"); // If you have associations
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => res.send("Hello world !"));
+app.use(passport.initialize());
+require("./passport");
 
+app.get("/", (req, res) => res.send("Hello world !"));
 //route
 app.use("/users", require("./routes/users.routes"));
 app.use("/sessions", require("./routes/sessions.routes"));
 app.use("/languages", require("./routes/languages.routes"));
 app.use("/signs", require("./routes/signs.routes"));
+app.use("/login", require("./routes/login.routes"));
 
 async function main() {
     try {

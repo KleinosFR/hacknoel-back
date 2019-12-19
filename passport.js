@@ -1,4 +1,4 @@
-const passport = require("passsport");
+require("dotenv").config();
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const GitHubStrategy = require("passport-github").Strategy;
@@ -31,11 +31,7 @@ passport.use(
             console.log(profile);
 
             let userData = {
-                firstname: profile,
-
-                email: profile.emails[0].value,
-                name: profile.username,
-                token: accesToken
+                email: profile.emails[0].value
             };
 
             await User.findOrCreate({
