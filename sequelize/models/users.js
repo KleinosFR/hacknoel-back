@@ -21,6 +21,14 @@ const User = sequelize.define(
     role: {
       type: Sequelize.STRING,
       allowNull: false
+    }, 
+    password: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    is_OAuth: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false
     }
   },
   {}
