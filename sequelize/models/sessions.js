@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../index");
 
-const User = sequelize.define(
-  "User",
+const Session = sequelize.define(
+  "Session",
   {
     uuid: {
       type: Sequelize.UUID,
@@ -10,15 +10,11 @@ const User = sequelize.define(
       primaryKey: true,
       defaultValue: Sequelize.UUIDV4
     },
-    firstName: {
+    name: {
       type: Sequelize.STRING,
       allowNull: false
     },
-    lastName: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    role: {
+    address: {
       type: Sequelize.STRING,
       allowNull: false
     }
@@ -26,4 +22,4 @@ const User = sequelize.define(
   {}
 );
 
-module.exports = User;
+module.exports = Session;

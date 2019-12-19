@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../index");
 
-const User = sequelize.define(
-  "User",
+const Language = sequelize.define(
+  "Language",
   {
     uuid: {
       type: Sequelize.UUID,
@@ -10,15 +10,7 @@ const User = sequelize.define(
       primaryKey: true,
       defaultValue: Sequelize.UUIDV4
     },
-    firstName: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    lastName: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    role: {
+    name: {
       type: Sequelize.STRING,
       allowNull: false
     }
@@ -26,4 +18,4 @@ const User = sequelize.define(
   {}
 );
 
-module.exports = User;
+module.exports = Language;
