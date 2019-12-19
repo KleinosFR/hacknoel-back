@@ -14,21 +14,27 @@ app.use(express.json());
 
 app.get("/", (req, res) => res.send("Hello world !"));
 
+//route
+app.use("/users", require("./routes/users.routes"));
+app.use("/sessions", require("./routes/sessions.routes"));
+app.use("/languages", require("./routes/languages.routes"));
+app.use("/signs", require("./routes/signs.routes"));
+
 async function main() {
-  try {
-    await sequelize.sync(); // Sync Method will create Database using the config & models
-    console.log("Database connection sucessfull");
-    app.listen(PORT, err => {
-      if (err) throw new Error("Something bad happened...");
-      console.log(`Listening to port ${PORT}.`);
-    });
-  } catch (err) {
-    console.error("Unable to reach database", err);
-  }
+    try {
+        await sequelize.sync(); // Sync Method will create Database using the config & models
+        console.log("Database connection sucessfull");
+        app.listen(PORT, err => {
+            if (err) throw new Error("Something bad happened...");
+            console.log(`Listening to port ${PORT}.`);
+        });
+    } catch (err) {
+        console.error("Unable to reach database", err);
+    }
 }
 
 if (process.env.NODE_ENV !== "test") {
-  main();
+    main();
 }
 
 // If you want to add tests with Mocha & Chai
