@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../index");
 
-const Session = sequelize.define(
-    "Session",
+const Language = sequelize.define(
+    "Language",
     {
         uuid: {
             type: Sequelize.INTEGER,
@@ -13,13 +13,9 @@ const Session = sequelize.define(
         name: {
             type: Sequelize.STRING,
             allowNull: false
-        },
-        address: {
-            type: Sequelize.STRING,
-            allowNull: false
         }
     },
     {}
 );
 
-module.exports = Session;
+module.exports = Language;
