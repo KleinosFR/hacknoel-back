@@ -33,13 +33,23 @@ router.get("/:id", async (req, res) => {
 //PUT ONE
 router.put("/:id", async (req, res) => {
     const { id } = req.params;
-    const { firstName, lastName, email, RoleUuid, is_OAuth, SessionUuid, LanguageUuid, } = req.body;
+    const {
+        firstName,
+        lastName,
+        email,
+        password,
+        RoleUuid,
+        is_OAuth,
+        SessionUuid,
+        LanguageUuid
+    } = req.body;
     try {
         User.update(
             {
                 firstName,
                 lastName,
                 email,
+                password,
                 RoleUuid,
                 SessionUuid,
                 LanguageUuid,
@@ -68,6 +78,7 @@ router.post("/", (req, res) => {
         firstName,
         lastName,
         email,
+        password,
         is_OAuth,
         SessionUuid,
         LanguageUuid,
@@ -77,6 +88,7 @@ router.post("/", (req, res) => {
         firstName,
         lastName,
         email,
+        password,
         is_OAuth,
         SessionUuid,
         LanguageUuid,
