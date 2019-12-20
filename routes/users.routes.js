@@ -33,13 +33,14 @@ router.get("/:id", async (req, res) => {
 //PUT ONE
 router.put("/:id", async (req, res) => {
     const { id } = req.params;
-    const { firstName, lastName, email, is_OAuth } = req.body;
+    const { firstName, lastName, email, RoleUuid, is_OAuth } = req.body;
     try {
         User.update(
             {
                 firstName,
                 lastName,
                 email,
+                RoleUuid,
 
                 is_OAuth
             },
@@ -66,19 +67,19 @@ router.post("/", (req, res) => {
         firstName,
         lastName,
         email,
-
         is_OAuth,
         SessionUuid,
-        LanguageUuid
+        LanguageUuid,
+        RoleUuid
     } = req.body;
     User.create({
         firstName,
         lastName,
         email,
-
         is_OAuth,
         SessionUuid,
-        LanguageUuid
+        LanguageUuid,
+        RoleUuid
     })
         .then(users => res.status(200).json(users))
         .catch(err => res.status(400).json(err));
