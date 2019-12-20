@@ -21,7 +21,7 @@ app.get("/", (req, res) => res.send("Hello world !"));
 app.use("/users", require("./routes/users.routes"));
 app.use("/sessions", require("./routes/sessions.routes"));
 app.use("/languages", require("./routes/languages.routes"));
-app.use("/roles", require("./routes/roles.routes"));
+app.use("/signs", require("./routes/signs.routes"));
 app.use("/roles", require("./routes/roles.routes"));
 app.use("/login", require("./routes/login.routes"));
 
