@@ -12,17 +12,17 @@ const User = sequelize.define(
         },
         firstName: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true
         },
         lastName: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true
         },
         role: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true
         },
-        password: {
+        email: {
             type: Sequelize.STRING,
             allowNull: false
         },
