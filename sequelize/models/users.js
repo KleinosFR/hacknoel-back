@@ -18,10 +18,6 @@ const User = sequelize.define(
             type: Sequelize.STRING,
             allowNull: true
         },
-        role: {
-            type: Sequelize.STRING,
-            allowNull: true
-        },
         email: {
             type: Sequelize.STRING,
             allowNull: false
