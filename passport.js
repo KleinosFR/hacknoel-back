@@ -11,12 +11,7 @@ const credentials = {
     github: {
         clientID: process.env.GITHUB_ID,
         clientSecret: process.env.GITHUB_SECRET,
-        callbackURL: "https://hacknoel-api.herokuapp.com/login/auth/github/callback"
-    },
-    google: {
-        clientID: process.env.GOOGLE_ID,
-        clientSecret: process.env.GOOGLE_SECRET,
-        callbackURL: "https://hacknoel-api.herokuapp.com/login/auth/google/callback"
+        callbackURL: "http://localhost:8000/login/auth/github/callback"
     }
 };
 
@@ -32,52 +27,21 @@ passport.use(
     new GitHubStrategy(
         credentials.github,
         async (accesToken, refreshToken, profile, cb) => {
-            console.log(profile);
-
             let userData = {
-                email: profile.emails[0].value
+                username: profile.username
             };
 
             await User.findOrCreate({
                 where: {
-                    email: userData.email
+                    username: userData.username
                 },
                 defaults: {
                     isOAuth: false
                 }
             });
-
-            userData.jwt = jwt.sign({ email: userData.email }, secret, {
+            userData.jwt = jwt.sign({ username: userData.username }, secret, {
                 expiresIn: "1h"
             });
-
-            cb(null, userData);
-        }
-    )
-);
-
-
-passport.use(
-    new GoogleStrategy(
-        credentials.google,
-        async (accesToken, refreshToken, profile, cb) => {
-            let userData = {
-                email: profile.emails[0].value,
-            };
-
-            await User.findOrCreate({
-                where: {
-                    email: userData.email
-                },
-                defaults: {
-                    isOAuth: true
-                }
-            });
-
-            userData.jwt = jwt.sign({ email: userData.email }, secret, {
-                expiresIn: "1h"
-            });
-
             cb(null, userData);
         }
     )
