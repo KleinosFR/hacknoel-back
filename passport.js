@@ -12,7 +12,7 @@ const credentials = {
         clientID: process.env.GITHUB_ID,
         clientSecret: process.env.GITHUB_SECRET,
         callbackURL:
-            "https://hacknoel-api.herokuapp.com/login/auth/github/callback"
+            "http://localhost:8000/login/auth/github/callback"
     }
 };
 
@@ -28,7 +28,6 @@ passport.use(
     new GitHubStrategy(
         credentials.github,
         async (accesToken, refreshToken, profile, cb) => {
-            console.log(profile);
 
             let userData = {
                 username: profile.username
