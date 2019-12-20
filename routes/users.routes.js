@@ -33,7 +33,7 @@ router.get("/:id", async (req, res) => {
 //PUT ONE
 router.put("/:id", async (req, res) => {
     const { id } = req.params;
-    const { firstName, lastName, email, RoleUuid, is_OAuth } = req.body;
+    const { firstName, lastName, email, RoleUuid, is_OAuth, SessionUuid, LanguageUuid, } = req.body;
     try {
         User.update(
             {
@@ -41,7 +41,8 @@ router.put("/:id", async (req, res) => {
                 lastName,
                 email,
                 RoleUuid,
-
+                SessionUuid,
+                LanguageUuid,
                 is_OAuth
             },
             {
