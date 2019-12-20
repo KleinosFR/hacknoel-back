@@ -8,7 +8,7 @@ const Sign = require("./models/signs");
 User.hasMany(Sign, { foreignKey: { allowNull: false }, onDelete: "CASCADE" });
 User.belongsTo(Session, { foreignKey: { allowNull: true } });
 User.belongsTo(Language, { foreignKey: { allowNull: true } });
-User.belongsTo(Role, { foreignKey: { allowNull: false } });
+User.belongsTo(Role, { foreignKey: { allowNull: true } });
 
 // SIGN
 Sign.belongsTo(User, { foreignKey: { allowNull: false } });
