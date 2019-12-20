@@ -22,6 +22,10 @@ const User = sequelize.define(
             type: Sequelize.STRING,
             allowNull: false
         },
+        password: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
         is_OAuth: {
             type: Sequelize.BOOLEAN,
             allowNull: false,
