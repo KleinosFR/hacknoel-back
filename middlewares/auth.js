@@ -10,7 +10,7 @@ module.exports.auth = (req, res, next) => {
     }
     jwt.verify(token, secret, (err, decoded) => {
         if (err) res.status(401).json({ message: "Invalid Token" });
-        req.email = decoded.email;
+        req.username = decoded.username;
         next();
     });
 };

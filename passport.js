@@ -31,19 +31,19 @@ passport.use(
             console.log(profile);
 
             let userData = {
-                email: profile.emails[0].value
+                username: profile.username
             };
 
             await User.findOrCreate({
                 where: {
-                    email: userData.email
+                    username: userData.username
                 },
                 defaults: {
                     isOAuth: false
                 }
             });
 
-            userData.jwt = jwt.sign({ email: userData.email }, secret, {
+            userData.jwt = jwt.sign({ username: userData.username }, secret, {
                 expiresIn: "1h"
             });
 
