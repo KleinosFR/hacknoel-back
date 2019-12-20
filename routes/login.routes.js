@@ -9,7 +9,7 @@ const User = require("../sequelize/models/users");
 
 router.get(
     "/auth/github",
-    passport.authenticate("github", { scope: ["profile", "email"] })
+    passport.authenticate("github", { scope: ["profile", "username"] })
 );
 
 router.get(
@@ -20,5 +20,6 @@ router.get(
         res.redirect(`http://localhost:3000/sign?token=${jwt}`);
     }
 );
+
 
 module.exports = router;

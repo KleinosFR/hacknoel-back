@@ -36,7 +36,7 @@ router.put("/:id", async (req, res) => {
     const {
         firstName,
         lastName,
-        email,
+        username,
         password,
         RoleUuid,
         is_OAuth,
@@ -48,7 +48,7 @@ router.put("/:id", async (req, res) => {
             {
                 firstName,
                 lastName,
-                email,
+                username,
                 password,
                 RoleUuid,
                 SessionUuid,
@@ -77,7 +77,7 @@ router.post("/", (req, res) => {
     const {
         firstName,
         lastName,
-        email,
+        username,
         password,
         is_OAuth,
         SessionUuid,
@@ -87,7 +87,7 @@ router.post("/", (req, res) => {
     User.create({
         firstName,
         lastName,
-        email,
+        username,
         password,
         is_OAuth,
         SessionUuid,
