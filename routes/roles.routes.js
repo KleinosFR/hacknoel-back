@@ -2,44 +2,42 @@ const express = require("express");
 const router = express.Router();
 const sequelize = require("sequelize");
 
-const Sign = require("../sequelize/models/signs");
-
-const { auth } = require("../middlewares/auth");
+const Role = require("../sequelize/models/roles");
 
 //GET ALL
-router.get("/", auth, async (req, res) => {
+router.get("/", async (req, res) => {
     try {
-        const signs = await Sign.findAll();
-        res.status(200).json(signs);
+        const roles = await Role.findAll();
+        res.status(200).json(roles);
     } catch (err) {
         res.status(400).json(err);
     }
 });
 
 //GET ONE
-router.get("/:id", auth, async (req, res) => {
+router.get("/:id", async (req, res) => {
     const { id } = req.params;
     try {
-        const signs = await Sign.findOne({
+        const roles = await Role.findOne({
             where: {
                 uuid: id
             }
         });
 
-        res.status(200).json(signs);
+        res.status(200).json(roles);
     } catch (err) {
         res.status(400).json(err);
     }
 });
 
 //PUT ONE
-router.put("/:id", auth, async (req, res) => {
+router.put("/:id", async (req, res) => {
     const { id } = req.params;
-    const { image } = req.body;
+    const { role } = req.body;
     try {
-        Sign.update(
+        Role.update(
             {
-                image
+                role
             },
             {
                 where: {
@@ -47,44 +45,42 @@ router.put("/:id", auth, async (req, res) => {
                 }
             }
         );
-        const signs = await Sign.findOne({
+        const roles = await Role.findOne({
             where: {
                 uuid: id
             }
         });
-        res.status(200).json(signs);
+        res.status(200).json(roles);
     } catch (err) {
         res.status(400).json(err);
     }
 });
 
 //POST ONE
-router.post("/", auth, (req, res) => {
-    const { image, UserUuid } = req.body;
-    Sign.create({
-        image,
-        UserUuid
+router.post("/", (req, res) => {
+    const { role } = req.body;
+    Role.create({
+        role
     })
-        .then(signs => res.status(200).json(signs))
+        .then(roles => res.status(200).json(roles))
         .catch(err => res.status(400).json(err));
 });
 
 //DELETE ONE
-// ATTENTION ne fonctionn pas
-router.delete("/:id", auth, async (req, res) => {
+router.delete("/:id", async (req, res) => {
     const { id } = req.params;
     try {
-        const signs = await Sign.findOne({
+        const roles = await Role.findOne({
             where: {
                 uuid: id
             }
         });
-        await Session.destroy({
+        await Role.destroy({
             where: {
                 uuid: id
             }
         });
-        res.status(200).json(signs);
+        res.status(200).json(roles);
     } catch (err) {
         res.status(400).json(err);
     }

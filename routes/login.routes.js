@@ -20,3 +20,5 @@ router.get(
         res.redirect(`http://localhost:3000/sign?token=${jwt}`);
     }
 );
+
+module.exports = router;
